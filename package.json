@@ -1,0 +1,50 @@
+{
+  "name": "image-notif",
+  "version": "0.0.3",
+  "author": "Fabrice Rozinoer",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "description": "Helper to generate image notifications",
+  "scripts": {
+    "lint": "eslint src test",
+    "build:source": "rimraf dist/ && babel src/ --out-dir dist/",
+    "build:tests": "rimraf test-dist/ && babel test/ --out-dir test-dist/",
+    "clean": "rimraf dist/ && rimraf test-dist/",
+    "build": "npm run build:source",
+    "prepublish": "npm run build",
+    "test": "node node_modules/mocha/bin/mocha --reporter spec test-dist/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:frozinoer/image-notif.git"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "canvas-prebuilt": "^1.6.5-prerelease.1",
+    "detect-node": "^2.0.3",
+    "lodash": "^4.17.4",
+    "numeral": "^2.0.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "7.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-system-import-transformer": "^3.1.0",
+    "babel-preset-env": "^1.6.0",
+    "chai": "^4.1.2",
+    "eslint": "3.6.1",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "mocha": "^4.0.1",
+    "rimraf": "2.5.4"
+  },
+  "engines": {
+    "node": ">=6.1.0"
+  },
+  "homepage": "https://github.com/frozinoer/image-notif",
+  "private": false,
+  "license": "MIT"
+}
