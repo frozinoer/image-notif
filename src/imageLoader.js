@@ -4,11 +4,10 @@ import isNode from 'detect-node';
 import assert from 'assert';
 
 
-if (typeof Image == "undefined") {
+if (isNode) {
     System.import('canvas-prebuilt').then(Canvas => {
         global.Image = Canvas.Image;
     });
-//    global.Image = require('canvas-prebuilt').Image;
 }
 
 
@@ -59,7 +58,6 @@ const loadHttp = url => {
 };
 
 const loadLocal = path => {
-
     return System.import('fs')
         .then(fs => {
             return new Promise((resolve, reject) => {

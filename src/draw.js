@@ -69,13 +69,6 @@ const roundedText = (canvas, round, contour, plus, text) => {
 	drawContour(canvas, round, contour);
 }
 
-/*const cancelImage = (canvas, p, image) => {
-	const ctx = canvas.getContext("2d");
-	ctx.globalAlpha = p.opacity;
-	ctx.drawImage(image, p.x, p.y, p.width, p.height);
-	ctx.globalAlpha = 1;	
-}*/
-
 const getTextWidth = (canvas, p, text) => {
 
 	const ctx = canvas.getContext("2d");
@@ -91,9 +84,8 @@ const text = (canvas, p, text) => {
 	const ctx = canvas.getContext("2d");
 
 	ctx.font = p.font;
-//	ctx.font = `${p.font.weight} ${p.font.size}px ${p.font.family}`;
-	ctx.textAlign = p.align;
-	ctx.fillStyle = p.style;
+	ctx.textAlign = (p.align) ? p.align : "left";		
+	ctx.fillStyle = (p.style) ? p.style : "#000";
 
 	const width = ctx.measureText(text).width;
 
@@ -102,20 +94,22 @@ const text = (canvas, p, text) => {
 	}
 
 	ctx.fillText(text, p.x, p.y);
-	return ctx.measureText(text).width;
+	return width;
 }
 
 const multiLineText = (canvas, p, text, maxLineWidth) => {
 
 	const ctx = canvas.getContext("2d");
 
-	ctx.font = `normal ${p.font.weight} ${p.font.size}px ${p.font.family}`;
-	ctx.textAlign = p.align;
-	ctx.fillStyle = p.style;
+	ctx.font = p.font;
+	ctx.textAlign = (p.align) ? p.align : "left";		
+	ctx.fillStyle = (p.style) ? p.style : "#000";
+
+	const width = ctx.measureText(text).width;
 
 	let y = p.y;
 
-	if (ctx.measureText(text).width <= maxLineWidth) {
+	if (width <= maxLineWidth) {
 		y += p.font.lineHeight;
 		ctx.fillText(text, p.x, y + p.font.size);
 
