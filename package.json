@@ -1,18 +1,20 @@
 {
   "name": "image-notif",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Fabrice Rozinoer",
   "main": "dist/index.js",
   "module": "src/index.js",
   "description": "Helper to generate image notifications",
   "scripts": {
     "lint": "eslint src test",
+    "watch": "npx babel src --watch --out-dir dist --source-maps --copy-files",
+    "compile": "npx babel -d dist/ src/",       
     "build:source": "rimraf dist/ && babel src/ --out-dir dist/",
     "build:tests": "rimraf test-dist/ && babel test/ --out-dir test-dist/",
     "clean": "rimraf dist/ && rimraf test-dist/",
     "build": "npm run build:source",
     "prepublish": "npm run build",
-    "test": "node node_modules/mocha/bin/mocha --reporter spec test-dist/*"
+    "test": "npm run compile && npx mocha --reporter spec test-dist/*"
   },
   "repository": {
     "type": "git",

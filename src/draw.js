@@ -86,6 +86,7 @@ const text = (canvas, p, text) => {
 	ctx.font = p.font;
 	ctx.textAlign = (p.align) ? p.align : "left";		
 	ctx.fillStyle = (p.style) ? p.style : "#000";
+	ctx.textBaseline = (p.baseline) ? p.baseline : "alphabetic";	
 
 	const width = ctx.measureText(text).width;
 
@@ -134,7 +135,13 @@ const multiLineText = (canvas, p, text, maxLineWidth) => {
 
 }
 
+const banner = (canvas, p) => {
+	const ctx = canvas.getContext("2d");
+	ctx.fillStyle = p.style;
+    ctx.fillRect(0, p.y, canvas.width, p.y + p.height);	
+}
+
 export default {
-  getImageClipping, centeredImage, roundedImage, roundedText, contour, getTextWidth, text, multiLineText
+  getImageClipping, centeredImage, roundedImage, roundedText, contour, getTextWidth, text, multiLineText, banner
 }
 

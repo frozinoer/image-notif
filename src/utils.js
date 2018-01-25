@@ -25,6 +25,15 @@ const createCanvasForGoogleAssistant = () => {
     return new Canvas(1000, 666);
 }
 
+const createCanvasForFacebookMessenger = width => {
+
+    if (!width && width < 1) {
+        throw new Error("width should be positive");        
+    }
+
+    return new Canvas(width, width / 1.91);
+}
+
 export default {
-	exportCanvasAsPNG, createCanvasForGoogleAssistant
+	exportCanvasAsPNG, createCanvasForGoogleAssistant, createCanvasForFacebookMessenger
 }
